@@ -1,28 +1,46 @@
 <template>
   <div id="app">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <div class="text-center">
+      <h1>Welcome to Your Vue.js + TypeScript App</h1>
+      <a class="btn" @click="statusModal(true)">Modal Customizable</a>
+    </div>
+    <modal v-model="showModal" card_class="card"></modal>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from './components/HelloWorld.vue';
+
+// Components
+import modal from './components/modal-slot.vue';
 
 @Component({
-  components: {
-    HelloWorld,
-  },
+  components: { modal },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  // Data
+  showModal: boolean = false;
+
+  // Functions
+  statusModal(value: boolean): void{
+    console.log("Abriendo modal...");
+    this.showModal = value;
+  }
+}
 </script>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+<style media="screen">
+#app{
+  font-family: arial;
+}
+.text-center{
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+}
+.btn{
+  cursor: pointer;
+  background: green;
+  color: #fff;
+  padding: 7px 15px;
+  margin-top: 10px;
 }
 </style>

@@ -1,9 +1,8 @@
 // Import vue component
-import ButtonOne from './src/components/ButtonOne.vue'
-import ButtonTwo from './src/components/ButtonTwo.vue'
+import ModalSlot from './src/components/modal-slot.vue'
 
 // Export components
-export { ButtonOne, ButtonTwo }
+export { ModalSlot };
 
 // Declare install function executed by Vue.use()
 export function install(Vue) {
@@ -11,8 +10,7 @@ export function install(Vue) {
 
 	install.installed = true;
 
-  Vue.component('ButtonOne', ButtonOne)
-  Vue.component('ButtonTwo', ButtonTwo)
+  Vue.component('ModalSlot', ModalSlot);
 }
 
 const plugin = {
