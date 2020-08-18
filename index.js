@@ -1,5 +1,5 @@
 // Import vue component
-import ModalSlot from './src/components/modal-slot.vue'
+import ModalSlot from './src/components/modal-slot.vue';
 
 // Export components
 export { ModalSlot };

@@ -19,6 +19,7 @@ Declaring as a general component in the index.js or .ts file of our vue project 
 ```
 import Vue from 'vue'
 import App from './App.vue'
+import '@darens/modal-slot/dist/modal-slot.css';
 import ModalSlot from '@darens/modal-slot';
 
 Vue.config.productionTip = false;
@@ -72,7 +73,8 @@ Directly importing the component where we want to use it, as follows:
 </template>
 
 <script>
-import { ModalSlot } from '@darens/modal-slot';
+import '@darens/modal-slot/dist/modal-slot.css';
+import ModalSlot from '@darens/modal-slot';
 
 export default {
   name: 'app',

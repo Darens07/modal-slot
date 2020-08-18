@@ -41,19 +41,19 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 export default class ModalSlot extends Vue {
 
   // Props
-  @Prop() private value!: boolean;
-  @Prop({default: 'md'}) readonly width!: string;
-  @Prop({default: ''}) readonly position!: string;
-  @Prop({default: true}) readonly no_header!: boolean;
-  @Prop({default: true}) readonly no_footer!: boolean;
-  @Prop({default: true}) readonly no_layout!: boolean;
-  @Prop({default: true}) readonly maximized!: boolean;
-  @Prop({default: true}) readonly card_class!: boolean;
-  @Prop({default: true}) readonly persistent!: boolean;
-  @Prop({default: true}) readonly full_width!: boolean;
-  @Prop({default: true}) readonly full_height!: boolean;
-  @Prop({default: true}) readonly layout_fixed!: boolean;
-  @Prop({default: 'Default header'}) readonly title!: string;
+  @Prop(String) value!: boolean;
+  @Prop({type: String, default: 'md'}) readonly width!: string;
+  @Prop({type: String, default: ''}) readonly position!: string;
+  @Prop({type: Boolean, default: true}) readonly no_header!: boolean;
+  @Prop({type: Boolean, default: true}) readonly no_footer!: boolean;
+  @Prop({type: Boolean, default: true}) readonly no_layout!: boolean;
+  @Prop({type: Boolean, default: true}) readonly maximized!: boolean;
+  @Prop({type: Boolean, default: true}) readonly card_class!: boolean;
+  @Prop({type: Boolean, default: true}) readonly persistent!: boolean;
+  @Prop({type: Boolean, default: true}) readonly full_width!: boolean;
+  @Prop({type: Boolean, default: true}) readonly full_height!: boolean;
+  @Prop({type: Boolean, default: true}) readonly layout_fixed!: boolean;
+  @Prop({type: String, default: 'Default header'}) readonly title!: string;
 
 
   // Functions
@@ -63,7 +63,7 @@ export default class ModalSlot extends Vue {
     }
   }
 
-  // Computes
+  // Computeds
   get modal_slot(): boolean{
     return this.value;
   }
