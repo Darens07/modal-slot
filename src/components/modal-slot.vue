@@ -41,14 +41,14 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 export default class ModalSlot extends Vue {
 
   // Props
-  @Prop(String) value!: boolean;
+  @Prop(Boolean) value!: boolean;
   @Prop({type: String, default: 'md'}) readonly width!: string;
   @Prop({type: String, default: ''}) readonly position!: string;
   @Prop({type: Boolean, default: true}) readonly no_header!: boolean;
   @Prop({type: Boolean, default: true}) readonly no_footer!: boolean;
   @Prop({type: Boolean, default: true}) readonly no_layout!: boolean;
   @Prop({type: Boolean, default: true}) readonly maximized!: boolean;
-  @Prop({type: Boolean, default: true}) readonly card_class!: boolean;
+  @Prop({type: String, default: ''}) readonly card_class!: string;
   @Prop({type: Boolean, default: true}) readonly persistent!: boolean;
   @Prop({type: Boolean, default: true}) readonly full_width!: boolean;
   @Prop({type: Boolean, default: true}) readonly full_height!: boolean;
@@ -57,8 +57,9 @@ export default class ModalSlot extends Vue {
 
 
   // Functions
-  modalStatus(event: any): void{
-    if(event.target.id == "wrapper"){
+  modalStatus(event: object): void{
+    var e: any = event;
+    if(e && e.target.id == "wrapper"){
       if(this.persistent) this.modal_slot = false;
     }
   }
