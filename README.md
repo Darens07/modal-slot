@@ -1,4 +1,4 @@
-# Modal-Slot
+# Modal-Slot for VUE
 
 ## Installation
 
@@ -90,9 +90,22 @@ export default {
 
 ## Slots
 
- - Content: To modify the body, simply write code inside the tags: "<modal-slot> </modal-slot> "
+### Content:
 
- - Header: If you want to get a better customization of the modal header, you can use the slot-header in the following way.
+To modify the body, simply write code inside the tags:
+
+ ```
+ <template>
+   <modal-slot v-model="showModal">
+    Hello word
+   </modal-slot>
+ </template>
+ ```
+
+### Header:
+
+If you want to get a better customization of the modal header, you can use the slot-header in the following way.
+
  ```
  <template>
   <modal-slot v-model="showModal">
@@ -101,25 +114,12 @@ export default {
     </div>
   </modal-slot>
  </template>
-
- <script>
- import { ModalSlot } from '@darens/modal-slot';
-
- export default {
-   name: 'app',
-   data(){
-     return{
-       showModal: false,
-     }
-   },
-   components: {
-     ModalSlot
-   }
- }
- </script>
  ```
 
- - Footer: To modify the footer of the modal is done as follows:
+### Footer:
+
+To modify the footer of the modal is done as follows:
+
  ```
  <template>
   <modal-slot v-model="showModal">
@@ -128,22 +128,6 @@ export default {
     </div>
   </modal-slot>
  </template>
-
- <script>
- import { ModalSlot } from '@darens/modal-slot';
-
- export default {
-   name: 'app',
-   data(){
-     return{
-       showModal: false,
-     }
-   },
-   components: {
-     ModalSlot
-   }
- }
- </script>
  ```
 
 ## Props
