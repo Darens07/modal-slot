@@ -1,12 +1,12 @@
 <template lang="html">
   <transition v-if="modal_slot" name="modal">
     <div class="modal-mask">
-      <div @click="modalStatus" id="wrapper" :class="['modal-wrapper', position, {'full-modal': !maximized}]">
+      <div @click="modalStatus" id="wrapper" :class="['modal-wrapper', position, {'full-modal': maximized}]">
 
         <!-- Modal Card -->
-        <div :class="['modal-card modal-card-' + width, card_class, {'full-width': !full_width, 'full-height': !full_height, 'layout-fixed': !layout_fixed}]">
+        <div :class="['modal-card modal-card-' + width, card_class, {'full-width': full_width, 'full-height': full_height, 'layout-fixed': layout_fixed}]">
           <!-- header -->
-          <div v-if="(no_layout && no_header)" class="modal-header">
+          <div v-if="(!no_layout && !no_header)" class="modal-header">
             <slot name="header">
               <div class="default__header">
                 <div class="default__header-title">
@@ -25,7 +25,7 @@
           </div>
 
           <!-- Footer -->
-          <div v-if="(no_layout && no_footer)" class="modal-footer">
+          <div v-if="(!no_layout && !no_footer)" class="modal-footer">
             <slot name="footer"> Default footer </slot>
           </div>
         </div>
@@ -41,26 +41,25 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 export default class ModalSlot extends Vue {
 
   // Props
-  @Prop(Boolean) value!: boolean;
+  @Prop({type: Boolean, default: false}) value!: boolean;
   @Prop({type: String, default: 'md'}) readonly width!: string;
   @Prop({type: String, default: ''}) readonly position!: string;
-  @Prop({type: Boolean, default: true}) readonly no_header!: boolean;
-  @Prop({type: Boolean, default: true}) readonly no_footer!: boolean;
-  @Prop({type: Boolean, default: true}) readonly no_layout!: boolean;
-  @Prop({type: Boolean, default: true}) readonly maximized!: boolean;
+  @Prop({type: Boolean, default: false}) readonly no_header!: boolean;
+  @Prop({type: Boolean, default: false}) readonly no_footer!: boolean;
+  @Prop({type: Boolean, default: false}) readonly no_layout!: boolean;
+  @Prop({type: Boolean, default: false}) readonly maximized!: boolean;
   @Prop({type: String, default: ''}) readonly card_class!: string;
-  @Prop({type: Boolean, default: true}) readonly persistent!: boolean;
-  @Prop({type: Boolean, default: true}) readonly full_width!: boolean;
-  @Prop({type: Boolean, default: true}) readonly full_height!: boolean;
-  @Prop({type: Boolean, default: true}) readonly layout_fixed!: boolean;
+  @Prop({type: Boolean, default: false}) readonly persistent!: boolean;
+  @Prop({type: Boolean, default: false}) readonly full_width!: boolean;
+  @Prop({type: Boolean, default: false}) readonly full_height!: boolean;
+  @Prop({type: Boolean, default: false}) readonly layout_fixed!: boolean;
   @Prop({type: String, default: 'Default header'}) readonly title!: string;
 
 
   // Functions
-  modalStatus(event: object): void{
-    var e: any = event;
-    if(e && e.target.id == "wrapper"){
-      if(this.persistent) this.modal_slot = false;
+  modalStatus(event: any = false): void{
+    if(event && event.target.id == "wrapper"){
+      if(!this.persistent) this.modal_slot = false;
     }
   }
 
@@ -83,7 +82,7 @@ export default class ModalSlot extends Vue {
   height: 100%;
   z-index: 9998;
   position: fixed;
-  transition: opacity .3s ease;
+  transition: .3s all ease;
   background-color: rgba(0, 0, 0, .5);
 }
 
@@ -122,10 +121,12 @@ export default class ModalSlot extends Vue {
 .modal-card {
   width: 100%;
   margin: 12px;
+  display: flex;
   max-height: 90%;
   overflow-y: auto;
+  flex-direction: column;
   background-color: #fff;
-  transition: all .3s ease;
+  transition: .3s all ease;
   padding-top: 0px !important;
   padding-bottom: 0px !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
@@ -175,6 +176,7 @@ export default class ModalSlot extends Vue {
 
 .modal-footer {
   padding: 15px 12px;
+  margin-top: auto;
 }
 
 .default{

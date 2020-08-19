@@ -4,7 +4,7 @@
       <h1>Welcome to Your Vue.js + TypeScript App</h1>
       <a class="btn" @click="statusModal(true)">Modal Customizable</a>
     </div>
-    <modal v-model="showModal" card_class="card"></modal>
+    <modal v-model="showModal"></modal>
   </div>
 </template>
 

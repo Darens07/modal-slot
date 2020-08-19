@@ -111,7 +111,7 @@ If you want to get a better customization of the modal header, you can use the s
  ```
  <template>
   <modal-slot v-model="showModal">
-    <div v-slot:header>
+    <div slot="header">
       hello word
     </div>
   </modal-slot>
@@ -125,7 +125,7 @@ To modify the footer of the modal is done as follows:
  ```
  <template>
   <modal-slot v-model="showModal">
-    <div v-slot:footer>
+    <div slot="footer">
       Actions
     </div>
   </modal-slot>
