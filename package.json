@@ -2,7 +2,7 @@
   "name": "@darens/modal-slot",
   "description": "Components library based on vue-cli",
   "author": "'Darens07' <'andresrodrigues634@gmail.com'>",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "license": "MIT",
   "main": "dist/modal-slot.common.js",
   "unpkg": "dist/modal-slot.common.js",
@@ -17,9 +17,19 @@
      "README.md"
   ],
   "repository": {
-    "type": "github",
+    "type": "git",
     "url": "https://github.com/Darens07/modal-slot"
   },
+  "keywords": [
+    "vue",
+    "modal",
+    "dialog",
+    "modal-slot",
+    "modal-slot-vue",
+    "vue-modal",
+    "vue-dialog",
+    "vue-component"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"

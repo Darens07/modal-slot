@@ -1,11 +1,15 @@
+
 # Modal-Slot for VUE
 
-## Installation
+<p align="center">
+  <a href="https://vuejs.org" target="_blank" rel="noopener noreferrer"><img width="100" src="https://vuejs.org/images/logo.png" alt="Vue logo"></a>
+</p>
 
-To install "modal-slot" in your project, just execute the following command:
+## Install
 
-```
-npm install @darens/modal-slot
+NPM:
+```bash
+npm install --save @darens/modal-slot
 ```
 
 ## How to use
@@ -16,7 +20,7 @@ There are two ways to use the modal slot:
 
 Declaring as a general component in the index.js or .ts file of our vue project as follows:
 
-```
+```js
 import Vue from 'vue'
 import App from './App.vue'
 import '@darens/modal-slot/dist/modal-slot.css';
@@ -32,7 +36,7 @@ new Vue({
 ```
 And we would use it anywhere in our project, as follows:
 
-```
+```html
 <template>
   <div id="app">
     Contact us
@@ -60,7 +64,7 @@ export default {
 
 Directly importing the component where we want to use it, as follows:
 
-```
+```html
 <template>
   <div id="app">
     Contact us
@@ -96,7 +100,7 @@ export default {
 
 To modify the body, simply write code inside the tags:
 
- ```
+ ```html
  <template>
    <modal-slot v-model="showModal">
     Hello word
@@ -108,7 +112,7 @@ To modify the body, simply write code inside the tags:
 
 If you want to get a better customization of the modal header, you can use the slot-header in the following way.
 
- ```
+ ```html
  <template>
   <modal-slot v-model="showModal">
     <div slot="header">
@@ -122,7 +126,7 @@ If you want to get a better customization of the modal header, you can use the s
 
 To modify the footer of the modal is done as follows:
 
- ```
+ ```html
  <template>
   <modal-slot v-model="showModal">
     <div slot="footer">
@@ -133,31 +137,20 @@ To modify the footer of the modal is done as follows:
  ```
 
 ## Props
-
- - width: The prop width is of type string and is the one that determines the size of our modal, it accepts the following measures: ['xs','sm','md','lg','xl'].
- If the prop width is not sent by default, our modal will be of size 'md'.
-
- - position: The prop position is of type string, and it helps us to position our modal wherever we want. Accepts the following values: ['top','right','botton','left'], Combinations of these values ​​can be made by sending for example: 'top left'.
-
- - no_header: This prop is of the Boolean type and is responsible for hiding the header of the modal.
-
- - no_footer: This prop is of the Boolean type and is responsible for hiding the footer of the modal.
-
- - no_layout: This prop is of the Boolean type and is responsible for hiding both the header and the footer of the modal.
-
- - maximized: This prop is of type string and it is in charge of maximizing the modal turning it into a full screen modal.
-
- - card_class: This prop is of type string and as its name indicates it is responsible for modifying the classes of the modal card.
-
- - persistent: Boolean-type prop and it is responsible for converting the modal into a persistent modal, that is, it cannot be closed by clicking on the outside of the modal.
-
- - full_width: Boolean-type prop and is responsible for forcing the modal to make it completely long horizontally.
-
- - full_height: Boolean-type prop and is responsible for forcing the modal to make it completely long vertically.
-
- - layout_fixed: Boolean type prop and ensures that both the header and the footer are fixed within the modal and that the content is scrollable.
-
- - title: String type prop that is used to modify the title of the default header.
+| Name | Type | Required | Default | Description |
+| ---  | ---  | ---      | ---     | ---         |
+| width | String | --- | 'md' | Accepted values: xs, sm, md, lg, xl. |
+| position | String | --- | 'center center' | Accepted values: top, right, botton, left. |
+| card_class | String | --- | '' | Css classes that are directed to the modal card. |
+| title | String | --- | 'Default header' | Used to modify the title of the default header. |
+| no_header | Boolean | --- | false | Hide the header of the modal. |
+| no_footer | Boolean | --- | false | Hide the footer of the modal. |
+| no_layout | Boolean | --- | false | Hide the header and footer of the modal. |
+| maximized | Boolean | --- | false | Convert the modal to a full screen. |
+| persistent | Boolean | --- | false | The modal cannot be closed from anywhere, only from a button assigned to close it. |
+| full_width | Boolean | --- | false | Maximizes the width of the modal as much as possible. |
+| full_height | Boolean | --- | false | Maximizes the height of the modal as much as possible. |
+| layout_fixed | Boolean | --- | false | The header and footer of the modal will be fixed inside the modal and only the body will be scrolleable. |
 
 ## Creator
 
