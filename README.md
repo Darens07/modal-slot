@@ -5,7 +5,7 @@
   <a href="https://vuejs.org" target="_blank" rel="noopener noreferrer"><img width="100" src="https://vuejs.org/images/logo.png" alt="Vue logo"></a>
 </p>
 
-## Instroduction
+## Introduction
 
 This library was made in order to create manners in an easier way using v-model.
 
@@ -14,7 +14,7 @@ What you are looking for with this library is to choose a kind of template for a
 ## Stable versions
 | Version | Description                                                                           |
 | ---     | ---                                                                                   |
-| 1.0.9   | First stable version, it only contains the base modal-slot with its respective props. |
+| 1.0.10  | First stable version, it only contains the base modal-slot with its respective props. |
 
 ## Install
 
