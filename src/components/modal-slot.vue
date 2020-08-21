@@ -1,10 +1,19 @@
 <template lang="html">
-  <transition v-if="modal_slot" name="modal">
-    <div class="modal-mask">
-      <div @click="modalStatus" id="wrapper" :class="['modal-wrapper', position, {'full-modal': maximized}]">
+  <transition v-if="modal_slot" :name="transition">
+    <div
+      :style="maskStyles"
+      :class="[ 'modal-mask', {'bg_mask': !no_mask} ]"
+    >
+      <!-- Close modal out modal-card -->
+      <div @click="modalStatus" class="modal-close"></div>
 
+      <div :class="[ 'modal-wrapper', position, {'full-modal': maximized} ]">
         <!-- Modal Card -->
-        <div :class="['modal-card modal-card-' + width, card_class, {'full-width': full_width, 'full-height': full_height, 'layout-fixed': layout_fixed}]">
+        <div
+          :style="cardStyles"
+          :class="[ 'modal-card modal-card-' + width, card_class, {'full-width': full_width, 'full-height': full_height, 'layout-fixed': layout_fixed, 'persistent': active_animation} ]"
+        >
+
           <!-- header -->
           <div v-if="(!no_layout && !no_header)" class="modal-header">
             <slot name="header">
@@ -26,8 +35,13 @@
 
           <!-- Footer -->
           <div v-if="(!no_layout && !no_footer)" class="modal-footer">
-            <slot name="footer"> Default footer </slot>
+            <slot name="footer">
+              <div @click="modal_slot = false" class="default-footer">
+                <a class="default-btn">Cerrar</a>
+              </div>
+            </slot>
           </div>
+
         </div>
       </div>
     </div>
@@ -39,56 +53,106 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class ModalSlot extends Vue {
+  // Data
+    active_animation: boolean = false;
 
-  // Props
-  @Prop({type: Boolean, default: false}) value!: boolean;
-  @Prop({type: String, default: 'md'}) readonly width!: string;
-  @Prop({type: String, default: ''}) readonly position!: string;
-  @Prop({type: Boolean, default: false}) readonly no_header!: boolean;
-  @Prop({type: Boolean, default: false}) readonly no_footer!: boolean;
-  @Prop({type: Boolean, default: false}) readonly no_layout!: boolean;
-  @Prop({type: Boolean, default: false}) readonly maximized!: boolean;
-  @Prop({type: String, default: ''}) readonly card_class!: string;
-  @Prop({type: Boolean, default: false}) readonly persistent!: boolean;
-  @Prop({type: Boolean, default: false}) readonly full_width!: boolean;
-  @Prop({type: Boolean, default: false}) readonly full_height!: boolean;
-  @Prop({type: Boolean, default: false}) readonly layout_fixed!: boolean;
-  @Prop({type: String, default: 'Default header'}) readonly title!: string;
-
-
-  // Functions
-  modalStatus(event: any = false): void{
-    if(event && event.target.id == "wrapper"){
-      if(!this.persistent) this.modal_slot = false;
+  updated(){
+    // Estableciendo un tiempo limite para este modal
+    var time_out: any = this.time_out;
+    if(time_out > 0){
+      setTimeout(():void => {
+        this.modal_slot = false;
+      }, time_out);
     }
   }
 
+  // Functions
+    modalStatus(): void{
+      if(!this.persistent) this.modal_slot = false;
+      else{
+        this.active_animation = true;
+        setTimeout((): void => {
+          this.active_animation = false;
+        }, 300);
+      }
+    }
+
+  // Props
+    @Prop({type: Boolean, default: false}) value!: boolean;
+    @Prop({type: String, default: 'md'}) readonly width!: string;
+    @Prop({type: String, default: ''}) readonly bg_card!: string;
+    @Prop({type: String, default: ''}) readonly bg_mask!: string;
+    @Prop({type: String, default: ''}) readonly position!: string;
+    @Prop({type: String, default: '0'}) readonly time_out!: string;
+    @Prop({type: String, default: ''}) readonly card_class!: string;
+    @Prop({type: Boolean, default: false}) readonly no_mask!: boolean;
+    @Prop({type: Boolean, default: false}) readonly no_header!: boolean;
+    @Prop({type: Boolean, default: false}) readonly no_footer!: boolean;
+    @Prop({type: Boolean, default: false}) readonly no_layout!: boolean;
+    @Prop({type: Boolean, default: false}) readonly maximized!: boolean;
+    @Prop({type: String, default: 'modal'}) readonly transition!: string;
+    @Prop({type: Boolean, default: false}) readonly persistent!: boolean;
+    @Prop({type: Boolean, default: false}) readonly full_width!: boolean;
+    @Prop({type: Boolean, default: false}) readonly full_height!: boolean;
+    @Prop({type: Boolean, default: false}) readonly layout_fixed!: boolean;
+    @Prop({type: String, default: 'Modal title'}) readonly title!: string;
+
+
   // Computeds
-  get modal_slot(): boolean{
-    return this.value;
-  }
-  set modal_slot(value: boolean){
-    this.$emit('input', value);
+    //# v-model
+    get modal_slot(): boolean{
+      return this.value;
+    }
+    set modal_slot(value: boolean){
+      this.$emit('input', value);
+    }
+
+    //# Style of modal-card
+    get cardStyles(): any{
+      if(this.bg_card != ''){
+        return{
+          backgroundColor: this.bg_card
+        }
+      }
+      return '';
+    }
+    //# Style of modal-mask
+    get maskStyles(): any{
+      if(this.bg_mask != ''){
+        return{
+          backgroundColor: this.bg_mask
+        }
+      }
+      return '';
   }
 }
 </script>
 
 <style lang="scss">
+// Estilos importantes para el modal-slot
+.modal-close {
+  top: 0;
+  left: 0;
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
 .modal-mask {
   top: 0;
   left: 0;
   margin: 0px;
   width: 100%;
   height: 100%;
-  z-index: 9998;
   position: fixed;
   transition: .3s all ease;
+}
+.bg_mask{
   background-color: rgba(0, 0, 0, .5);
 }
 
 .modal-wrapper {
-  // display: table-cell;
-  // vertical-align: middle;
   width: 100%;
   height: 100%;
   display: flex;
@@ -104,9 +168,10 @@ export default class ModalSlot extends Vue {
 .top{
   align-items: flex-start;
 }
-.botton{
+.bottom{
   align-items: flex-end;
 }
+
 .full-modal{
   align-items: flex-start;
   justify-content: flex-start;
@@ -119,6 +184,7 @@ export default class ModalSlot extends Vue {
 }
 
 .modal-card {
+  z-index: 2;
   width: 100%;
   margin: 12px;
   display: flex;
@@ -158,11 +224,16 @@ export default class ModalSlot extends Vue {
   margin-bottom: 0px;
 }
 .layout-fixed{
-  max-height: none !important;
-  overflow-y: inherit !important;
+  overflow-y: hidden !important;
+  .modal-header{
+    border-bottom: 1px solid rgba(0,0,0,.15);
+  }
   .modal-body{
     max-height: 82vh;
     overflow-y: auto;
+  }
+  .modal-footer{
+    border-top: 1px solid rgba(0,0,0,.15);
   }
 }
 
@@ -179,6 +250,7 @@ export default class ModalSlot extends Vue {
   margin-top: auto;
 }
 
+//# Clases para el header y el footer por defecto
 .default{
   &__header{
     display: flex;
@@ -208,7 +280,19 @@ export default class ModalSlot extends Vue {
       background-color: rgba(0,0,0,.05);
     }
   }
+  &-footer{
+    text-align:right;
+  }
+  &-btn{
+    cursor: pointer;
+    background: #a4a4a4;
+    color: #fff;
+    padding: 7px 15px;
+    margin-top: 10px;
+  }
 }
+
+
 /*
  * The following styles are auto-applied to elements with
  * transition="modal" when their visibility is toggled
@@ -216,8 +300,9 @@ export default class ModalSlot extends Vue {
  *
  * You can easily play with the modal transition by editing
  * these styles.
- */
+*/
 
+//# 1
 .modal-enter {
   opacity: 0;
 }
@@ -230,5 +315,32 @@ export default class ModalSlot extends Vue {
 .modal-leave-active .modal-card {
   transform: scale(1.1);
   -webkit-transform: scale(1.1);
+}
+
+//# 2
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0
+}
+
+
+
+.persistent{
+  animation-name: persistent;
+  animation-duration: .12s;
+  animation-iteration-count: 2;
+}
+@keyframes persistent {
+    0% {
+      transform:scale(1,1);
+    }
+    50% {
+      transform:scale(1.02,1.02);
+    }
+    100% {
+      transform:scale(1,1);
+    }
 }
 </style>

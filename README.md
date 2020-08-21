@@ -5,6 +5,17 @@
   <a href="https://vuejs.org" target="_blank" rel="noopener noreferrer"><img width="100" src="https://vuejs.org/images/logo.png" alt="Vue logo"></a>
 </p>
 
+## Instroduction
+
+This library was made in order to create manners in an easier way using v-model.
+
+What you are looking for with this library is to choose a kind of template for a modal that with only a few props of vue we can generate a great modal, as well as it is divided by versions since if you do not want to download the whole library if not only You want the basic modal-slot, you download a specific version and you can also choose to download the newer versions that will contain more structured modals.
+
+## Stable versions
+| Version | Description                                                                           |
+| ---     | ---                                                                                   |
+| 1.0.9   | First stable version, it only contains the base modal-slot with its respective props. |
+
 ## Install
 
 NPM:
@@ -78,7 +89,7 @@ Directly importing the component where we want to use it, as follows:
 
 <script>
 import '@darens/modal-slot/dist/modal-slot.css';
-import ModalSlot from '@darens/modal-slot';
+import { ModalSlot } from '@darens/modal-slot';
 
 export default {
   name: 'app',
@@ -137,12 +148,12 @@ To modify the footer of the modal is done as follows:
  ```
 
 ## Props
-| Name | Type | Required | Default | Description |
-| ---  | ---  | ---      | ---     | ---         |
+| Name | Type | Required | Default    | Description |
+| ---  | ---  | ---      | ---        | ---         |
 | width | String | --- | 'md' | Accepted values: xs, sm, md, lg, xl. |
-| position | String | --- | 'center center' | Accepted values: top, right, botton, left. |
+| position | String | --- | 'center center' | Accepted values: top, right, bottom, left. |
 | card_class | String | --- | '' | Css classes that are directed to the modal card. |
-| title | String | --- | 'Default header' | Used to modify the title of the default header. |
+| title | String | --- | 'Modal title' | Used to modify the title of the default header. |
 | no_header | Boolean | --- | false | Hide the header of the modal. |
 | no_footer | Boolean | --- | false | Hide the footer of the modal. |
 | no_layout | Boolean | --- | false | Hide the header and footer of the modal. |
@@ -151,6 +162,11 @@ To modify the footer of the modal is done as follows:
 | full_width | Boolean | --- | false | Maximizes the width of the modal as much as possible. |
 | full_height | Boolean | --- | false | Maximizes the height of the modal as much as possible. |
 | layout_fixed | Boolean | --- | false | The header and footer of the modal will be fixed inside the modal and only the body will be scrolleable. |
+| transition | String | --- | 'modal' | Accepted values: fade, modal. Input and output animation for the modal, if you want a different animation you can choose to create your animation in css and then send the class through this prop. |
+| no_mask | Boolean | --- | false | It takes care of hiding the default rgba background of the modal. |
+| bg_card | String | --- | '' | Background color of the modal card, can be sent in hexadecimal or rgba |
+| bg_mask | String | --- | '' | Modal background color, can be sent in hexadecimal or rgba |
+| time_out | [String, Number] | --- | '0' | Waiting time before closing the modal, it is sent in milliseconds |
 
 ## Creator
 

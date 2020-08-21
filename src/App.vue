@@ -2,9 +2,13 @@
   <div id="app">
     <div class="text-center">
       <h1>Welcome to Your Vue.js + TypeScript App</h1>
-      <a class="btn" @click="statusModal(true)">Modal Customizable</a>
+      <a class="default-btn" @click="statusModal(true)">Modal Customizable</a>
     </div>
-    <modal v-model="showModal"></modal>
+    <modal v-model="showModal" width="sm" layout_fixed>
+      <div style="margin: 10px 0px;">
+        Welcome to Modal-slot
+      </div>
+    </modal>
   </div>
 </template>
 
@@ -23,7 +27,6 @@ export default class App extends Vue {
 
   // Functions
   statusModal(value: boolean): void{
-    console.log("Abriendo modal...");
     this.showModal = value;
   }
 }
@@ -35,12 +38,5 @@ export default class App extends Vue {
 }
 .text-center{
   text-align: center;
-}
-.btn{
-  cursor: pointer;
-  background: green;
-  color: #fff;
-  padding: 7px 15px;
-  margin-top: 10px;
 }
 </style>
