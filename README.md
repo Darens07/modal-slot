@@ -14,7 +14,8 @@ What you are looking for with this library is to choose a kind of template for a
 ## Stable versions
 | Version | Description                                                                           |
 | ---     | ---                                                                                   |
-| 1.0.10  | First stable version, it only contains the base modal-slot with its respective props. |
+| 1.0.11  | First stable version, it only contains the base modal-slot with its respective props. |
+| 1.1.12  | In this version, in addition to bringing the modal-slot included, the modal-verify will also be one of the most used types of modals. |
 
 ## Install
 
@@ -150,6 +151,7 @@ To modify the footer of the modal is done as follows:
 ## Props
 | Name | Type | Required | Default    | Description |
 | ---  | ---  | ---      | ---        | ---         |
+| v-model | Boolean | --- | false | Used to open and close the modal. |
 | width | String | --- | 'md' | Accepted values: xs, sm, md, lg, xl. |
 | position | String | --- | 'center center' | Accepted values: top, right, bottom, left. |
 | card_class | String | --- | '' | Css classes that are directed to the modal card. |
@@ -167,6 +169,65 @@ To modify the footer of the modal is done as follows:
 | bg_card | String | --- | '' | Background color of the modal card, can be sent in hexadecimal or rgba |
 | bg_mask | String | --- | '' | Modal background color, can be sent in hexadecimal or rgba |
 | time_out | [String, Number] | --- | '0' | Waiting time before closing the modal, it is sent in milliseconds |
+| icon | Object | --- | {} | The following prop is used to place an icon next to the title in the header. Any material desing icon can be used and this icon can be styled with the camelcase principle. Example:{name: 'face', style: {color: 'red', fontSize: '24px'}} |
+
+##Types modals
+
+### Modal Verify
+
+It is a very common type of modal, used for verifications such as, for example, when a product is going to be eliminated in an application that contains inventory, it is necessary that a specific alert is output so that the user is aware of the product that he is eliminating and thus avoid that a product that we do not want is eliminated.
+
+Now for the operation of this type of modal, the following must be taken into account:
+
+This type of modal receives certain props and emits unique ones.
+
+ - no_persistent: The modal-verify by default is of a persistent type and many times it is not necessary that it be this way, so if you want to change this, you just have to send this prop to true.
+
+ - jsonData: This prop is used to change certain things within the modal and is constituted in the following way:
+
+ ```js
+   jsonData = {
+     dataEmit: false
+     title: 'Alerta',
+     icon: {
+       name: 'report_problem',
+       style:{
+         color: 'red'
+       }
+     },
+   }
+ ```
+ It is important to note that if this prop is not sent, it will have the aforementioned values ​​by default, so you do not have to worry if you do not want to change any of them.
+
+ - @acepted: Inside this modal there is an accept button which throws that emit, here any necessary function can be performed and as if that were not enough, it also sends the "dataEmit" that was established in the "jsonData" as the first parameter.
+
+In addition to this, the modal has two slots which are:
+
+### Content:
+
+To modify the body, simply write code inside the tags:
+
+ ```html
+ <template>
+   <modal-verify v-model="showModal">
+     Validating my actions
+   </modal-verify>
+ </template>
+ ```
+
+### Footer:
+
+To modify the footer of the modal is done as follows:
+
+ ```html
+ <template>
+  <modal-verify v-model="showModal">
+    <div slot="footer">
+      Actions
+    </div>
+  </modal-verify>
+ </template>
+ ```
 
 ## Creator
 

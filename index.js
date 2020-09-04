@@ -1,8 +1,9 @@
 // Import vue component
-import ModalSlot from './src/components/modal-slot.vue';
+import ModalSlot from './src/components/modals/modal-slot.vue';
+import ModalVerify from './src/components/modals/types-modals/modal-verify.vue';
 
 // Export components
-export { ModalSlot };
+export { ModalSlot, ModalVerify };
 
 // Declare install function executed by Vue.use()
 export function install(Vue) {
@@ -11,6 +12,7 @@ export function install(Vue) {
 	install.installed = true;
 
   Vue.component('ModalSlot', ModalSlot);
+  Vue.component('ModalVerify', ModalVerify);
 }
 
 const plugin = {

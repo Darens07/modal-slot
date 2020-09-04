@@ -19,6 +19,9 @@
             <slot name="header">
               <div class="default__header">
                 <div class="default__header-title">
+                  <div v-if="icon">
+                    <i :style="(icon.style) ? icon.style : ''" class="material-icons">{{(icon.name) ? icon.name : icon}}</i>
+                  </div>
                   {{ title }}
                 </div>
                 <div class="default__header-close">
@@ -30,7 +33,11 @@
 
           <!-- body -->
           <div class="modal-body">
-            <slot> Default body </slot>
+            <slot>
+              <p class="default-text">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </slot>
           </div>
 
           <!-- Footer -->
@@ -96,6 +103,7 @@ export default class ModalSlot extends Vue {
     @Prop({type: Boolean, default: false}) readonly full_height!: boolean;
     @Prop({type: Boolean, default: false}) readonly layout_fixed!: boolean;
     @Prop({type: String, default: 'Modal title'}) readonly title!: string;
+    @Prop({type: [String, Object], default: null}) readonly icon!: any;
 
 
   // Computeds
@@ -124,7 +132,7 @@ export default class ModalSlot extends Vue {
         }
       }
       return '';
-  }
+    }
 }
 </script>
 
@@ -238,7 +246,7 @@ export default class ModalSlot extends Vue {
 }
 
 .modal-header{
-  padding: 15px 12px;
+  padding: 15px 12px 10px 12px;
 }
 
 .modal-body {
@@ -252,13 +260,19 @@ export default class ModalSlot extends Vue {
 
 //# Clases para el header y el footer por defecto
 .default{
+  &-text{
+    margin: 0px;
+    line-height: 24px;
+    font-size: 16px;
+  }
   &__header{
     display: flex;
     align-items: center;
     justify-content: space-between;
     &-title{
-      font-size: 19px;
-      line-height: 20px;
+      font-size: 21px;
+      line-height: 22px;
+      display: flex;
     }
     &-close #default-close{
       width: 32px;
