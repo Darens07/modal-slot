@@ -14,8 +14,8 @@ What you are looking for with this library is to choose a kind of template for a
 ## Stable versions
 | Version | Description                                                                           |
 | ---     | ---                                                                                   |
-| 1.0.11  | First stable version, it only contains the base modal-slot with its respective props. |
-| 1.1.12  | In this version, in addition to bringing the modal-slot included, the modal-verify will also be one of the most used types of modals. |
+| 1.0.12  | First stable version, it only contains the base modal-slot with its respective props. |
+| 1.1.13  | In this version, in addition to bringing the modal-slot included, the modal-verify will also be one of the most used types of modals. |
 
 ## Install
 
