@@ -1,4 +1,5 @@
 // Import vue component
+import './src/assets/icons/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2'
 import ModalSlot from './src/components/modals/modal-slot.vue';
 import ModalVerify from './src/components/modals/types-modals/modal-verify.vue';
 
