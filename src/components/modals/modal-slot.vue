@@ -181,6 +181,7 @@ export default class ModalSlot extends Vue {
 }
 .bg_mask{
   background-color: rgba(0, 0, 0, .5);
+  z-index: 9999999999999999;
 }
 
 .modal-wrapper {
@@ -215,7 +216,7 @@ export default class ModalSlot extends Vue {
 }
 
 .modal-card {
-  z-index: 2;
+  z-index: 99999999999999999;
   width: 100%;
   margin: 12px;
   display: flex;
@@ -292,6 +293,7 @@ export default class ModalSlot extends Vue {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
     &-title{
       font-size: 21px;
       line-height: 22px;
@@ -379,5 +381,9 @@ export default class ModalSlot extends Vue {
     100% {
       transform:scale(1,1);
     }
+}
+
+.default-btn:hover{
+  color: #fff !important;
 }
 </style>

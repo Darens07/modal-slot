@@ -2,7 +2,7 @@
   "name": "@darens/modal-slot",
   "description": "Components library based on vue-cli",
   "author": "'Darens07' <'andresrodrigues634@gmail.com'>",
-  "version": "1.1.15",
+  "version": "1.2.1",
   "license": "MIT",
   "main": "dist/modal-slot.common.js",
   "unpkg": "dist/modal-slot.common.js",
@@ -33,7 +33,7 @@
   ],
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "npx vue-cli-service build --target lib --name modal-slot index.js"
   },
   "dependencies": {
     "core-js": "^3.6.5",
