@@ -177,11 +177,11 @@ export default class ModalSlot extends Vue {
   width: 100%;
   height: 100%;
   position: fixed;
+  z-index: 9999999999999999;
   transition: .3s all ease;
 }
 .bg_mask{
   background-color: rgba(0, 0, 0, .5);
-  z-index: 9999999999999999;
 }
 
 .modal-wrapper {
