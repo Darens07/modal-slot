@@ -78,8 +78,14 @@ export default class ModalVerify extends Vue {
   &_acepted{
     color: red;
   }
+  &_acepted:hover{
+    color: red !important;
+  }
   &_cancel{
     color: #4c4c4c;
+  }
+  &_cancel:hover{
+    color: #4c4c4c !important;
   }
   &_acepted:hover{
     background: rgba(255,0,0,.15);
