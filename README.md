@@ -11,12 +11,6 @@ This library was made in order to create manners in an easier way using v-model.
 
 What you are looking for with this library is to choose a kind of template for a modal that with only a few props of vue we can generate a great modal, as well as it is divided by versions since if you do not want to download the whole library if not only You want the basic modal-slot, you download a specific version and you can also choose to download the newer versions that will contain more structured modals.
 
-## Stable versions
-| Version | Description                                                                           |
-| ---     | ---                                                                                   |
-| 1.0.13  | First stable version, it only contains the base modal-slot with its respective props. |
-| 1.2.2  | In this version, in addition to bringing the modal-slot included, the modal-verify will also be one of the most used types of modals. |
-
 ## Install
 
 NPM:

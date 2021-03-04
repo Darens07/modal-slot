@@ -245,15 +245,14 @@ export default class ModalSlot extends Vue {
   }
 }
 .full-width{
+  width: 100%;
   max-width: 100%;
-  margin-left: 0px;
-  margin-right: 0px;
+  margin: 0px;
 }
 .full-height{
   height: 100%;
-  margin-top: 0px;
   max-height: 100%;
-  margin-bottom: 0px;
+  margin: 0px;
 }
 .layout-fixed{
   overflow-y: hidden !important;
